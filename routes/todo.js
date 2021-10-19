@@ -35,7 +35,8 @@ exports.findAll = function (_, res) {
 exports.findById = function (req, res) {
   let id = req.params.id 
   try {
-    const todo = todos.filter(element => element.id == id) 
+    const todo = todos.find(element => element.id == id) 
+    res.status(200).send(todo)
   } catch (error) {
     res.json(404, { error: 'Not found' });
   }
@@ -62,7 +63,12 @@ exports.addTodo = function (req, res) {
  * Update a todo by its identifier.
  */
 exports.updateTodo = function (req, res) {
-  res.json(404, { error: 'Not found' });
+  const id = req.params.id ;
+  try {
+   // const toDoToupdate = 
+  } catch (error) {
+    res.json(404, { error: 'Not found' });
+  }
 };
 
 /*
