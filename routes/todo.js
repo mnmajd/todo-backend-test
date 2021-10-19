@@ -34,7 +34,6 @@ exports.findAll = function (_, res) {
  */
 exports.findById = function (req, res) {
   let id = req.params.id 
-  console.log(id)
   try {
     const todo = todos.filter(element => element.id == id) 
   } catch (error) {
@@ -47,7 +46,16 @@ exports.findById = function (req, res) {
  * Create a todo.
  */
 exports.addTodo = function (req, res) {
-  res.status(201).end();
+  const newToDo = req.body.todo;
+  try {
+    todos.push(newToDo);
+    res.status(201).json({
+      Success : true
+    })
+  } catch (error) {
+    res.json(404, { error: 'Error While creating todo' });
+  }
+  
 };
 
 /*
