@@ -64,8 +64,15 @@ exports.addTodo = function (req, res) {
  */
 exports.updateTodo = function (req, res) {
   const id = req.params.id ;
+  const updatedToDo = req.body.updatedTodo;
   try {
-   // const toDoToupdate = 
+    for(let i = 0 ; i< todos.length;i++)
+    {
+      if(todos[i].id == id){
+        todos[i] = updatedToDo // classic mais fonctionnel à améliorer
+      }
+    }
+  res.status(200).send(todos)
   } catch (error) {
     res.json(404, { error: 'Not found' });
   }
