@@ -21,14 +21,26 @@ let id = 3;
  * GET todos listing.
  */
 exports.findAll = function (_, res) {
-  res.json(200, todos);
+  try {
+    res.json(200, todos);
+  } catch (error) {
+    console.log(error); // We can use a specific 
+  }
+ 
 };
 
 /*
  * GET todo by identifier.
  */
 exports.findById = function (req, res) {
-  res.json(404, { error: 'Not found' });
+  let id = req.params.id 
+  console.log(id)
+  try {
+    const todo = todos.filter(element => element.id == id) 
+  } catch (error) {
+    res.json(404, { error: 'Not found' });
+  }
+  
 };
 
 /*
