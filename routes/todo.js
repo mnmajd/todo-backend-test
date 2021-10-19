@@ -82,6 +82,18 @@ exports.updateTodo = function (req, res) {
  * Delete a todo
  */
 exports.deleteTodo = function (req, res) {
-  res.status(204).end();
-  return;
+  const id = req.params.id;
+  try {
+    for( let i = 0; i < todos.length; i++){ 
+    
+      if ( todos[i].id == id) { 
+  
+          todos.splice(i, 1); 
+      }
+  }
+  res.status(200).send(todos);
+  } catch (error) {
+    res.json(404, { error: 'Not found' });
+  }
+
 };
